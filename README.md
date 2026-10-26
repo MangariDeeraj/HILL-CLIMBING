@@ -1,6 +1,6 @@
 <h1>ExpNo 5 : Implement Simple Hill Climbing Algorithm</h1> 
-<h3>Name: MANGARI DEERAJ            </h3>
-<h3>Register Number:   212223100031          </h3>
+<h3>Name:   MANGARI DEERAJ</h3>
+<h3>Register Number: 212223100031</h3>
 <H3>Aim:</H3>
 <p>Implement Simple Hill Climbing Algorithm and Generate a String by Mutating a Single Character at each iteration </p>
 <h2> Theory: </h2>
@@ -37,46 +37,8 @@ Feedback is provided in terms of heuristic function
 <p> Evaluate the fitness function or Heuristic Function</p>
 <h3>Step-4:</h3>
 <p> Lopp Step -2 and Step-3  until we achieve the score to be Zero to achieve Global Minima.</p>
-<H3>PROGRAM:</H3>
-```
-import random
-import string
-def generate_random_solution(answer):
-    l = len(answer)
-    return [random.choice(string.printable) for _ in range(l)]
-def evaluate(solution, answer):
-    target = list(answer)
-    diff = 0
-    for i in range(len(target)):
-        s = solution[i]
-        t = target[i]
-        diff += abs(ord(s) - ord(t))
-    return diff
-def mutate_solution(solution):
-    ind = random.randint(0, len(solution) - 1)
-    solution[ind] = random.choice(string.printable)
-    return solution
-def SimpleHillClimbing():
-    answer = "Artificial Intelligence"
-    best = generate_random_solution(answer)
-    best_score = evaluate(best, answer)
-    while True:
-        print("Score:", best_score, "Solution:", "".join(best))
-        if best_score == 0:
-            break
-        new_solution = mutate_solution(list(best))
-        score = evaluate(new_solution, answer)
-        if score < best_score:
-            best = new_solution
-            best_score = score
-SimpleHillClimbing()
 
-```
- </code>
-</pre>
-</p>
 <hr>
-
 <h2>Sample Input and Output</h2>
 <h2>Sample String:</h2> Artificial Intelligence
 <h2>Output:</h2>
@@ -98,10 +60,69 @@ Score: 1  Solution :  Artificial Intelligencf<br>
 Score: 1  Solution :  Artificial Intelligencf<br>
 Score: 0  Solution :  Artificial Intelligence<br>
 
-## OUTPUT
 
-<img width="777" height="540" alt="image" src="https://github.com/user-attachments/assets/a8b44fe4-28d2-46bd-b617-3bca44240085" />
-## RESULT
+## PROGRAM:
+```
+import random
+import string
+
+
+def generate_random_solution(answer):
+    length = len(answer)
+    return [random.choice(string.printable) for _ in range(length)]
+
+
+def evaluate(solution, answer):
+    target = list(answer)
+    diff = 0
+
+    for i in range(len(target)):
+        s = solution[i]
+        t = target[i]
+
+        # Calculate the ASCII difference between characters
+        diff += abs(ord(s) - ord(t))
+
+    return diff
+
+
+def mutate_solution(solution):
+    index = random.randint(0, len(solution) - 1)
+    solution[index] = random.choice(string.printable)
+    return solution
+
+
+def simple_hill_climbing():
+    answer = "Artificial Intelligence"
+
+    # Generate initial random solution
+    best = generate_random_solution(answer)
+    best_score = evaluate(best, answer)
+
+    while True:
+        print("Score:", best_score, "Solution:", "".join(best))
+
+        # Stop when the solution matches the answer
+        if best_score == 0:
+            break
+
+        # Create a new solution by changing one character
+        new_solution = mutate_solution(list(best))
+        score = evaluate(new_solution, answer)
+
+
+        if score < best_score:
+            best = new_solution
+            best_score = score
+
+```
+
+
+## OUTPUT:
+<img width="613" height="555" alt="image" src="https://github.com/user-attachments/assets/461fcdc2-6618-405d-afd6-d510a1d65df5" /><BR><BR>
+
+<img width="558" height="571" alt="image" src="https://github.com/user-attachments/assets/dffdefb1-cf9a-47d1-9598-86a6f388f350" />
+
+## RESULT:
 Thus the Implementation of Simple Hill Climbing Algorithm is implemented successfully
-
 
